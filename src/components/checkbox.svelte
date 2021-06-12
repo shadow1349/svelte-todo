@@ -1,7 +1,11 @@
+<script>
+  export let checked;
+</script>
+
 <label class="container">
   <slot />
   <!-- If we want the checkbox to have a lavel -->
-  <input type="checkbox" />
+  <input type="checkbox" bind:checked={checked} />
   <span class="checkmark" />
 </label>
 
