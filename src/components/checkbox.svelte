@@ -5,7 +5,7 @@
 <label class="container">
   <slot />
   <!-- If we want the checkbox to have a lavel -->
-  <input type="checkbox" bind:checked={checked} />
+  <input type="checkbox" bind:checked />
   <span class="checkmark" />
 </label>
 
@@ -14,16 +14,16 @@
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
+    margin: 0 0 12px 0; /* This will keep a 12px bottom but also make sure it's not expanding outwards */
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    width: 0; /* a 0 width will make it so you can't basically click ANYWHERE and check the checkbox */
   }
 
   .container input {
-    position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
