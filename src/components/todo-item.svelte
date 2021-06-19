@@ -1,19 +1,37 @@
 <script>
   import Checkbox from "./checkbox.svelte";
 
+  export let content;
+
   let checked = false;
 </script>
 
-<div class="todo-item">
-  <Checkbox bind:checked />
+<div class="container">
+  <div class="todo-item">
+    <Checkbox bind:checked />
+    <p class={checked ? "completed" : ""}>{content}</p>
+  </div>
+  <button>delete</button>
 </div>
 
 <style>
-  .todo-item {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border: 2px solid #000000;
     padding: 1rem 2rem;
     border-radius: 10px;
     position: relative;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .todo-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
+  .completed {
+    text-decoration: line-through;
   }
 </style>
