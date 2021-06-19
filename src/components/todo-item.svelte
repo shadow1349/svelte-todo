@@ -1,5 +1,6 @@
 <script>
   import Checkbox from "./checkbox.svelte";
+  import Button from "./button.svelte";
 
   export let content;
 
@@ -11,7 +12,10 @@
     <Checkbox bind:checked />
     <p class={checked ? "completed" : ""}>{content}</p>
   </div>
-  <button>delete</button>
+
+  <Button img={true}>
+    <img src="/delete.svg" alt="delete button" width="20" />
+  </Button>
 </div>
 
 <style>
@@ -30,6 +34,11 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
+  }
+
+  .todo-item p {
+    margin-left: 50px;
+    font-size: 20px;
   }
   .completed {
     text-decoration: line-through;
