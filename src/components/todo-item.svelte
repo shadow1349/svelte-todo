@@ -1,10 +1,16 @@
 <script>
   import Checkbox from "./checkbox.svelte";
   import Button from "./button.svelte";
+  import { items } from "../state";
 
   export let content;
+  export let id;
 
   let checked = false;
+
+  function deleteSelf() {
+    $items = $items.filter((x) => x.id !== id);
+  }
 </script>
 
 <div class="container">
@@ -13,7 +19,7 @@
     <p class={checked ? "completed" : ""}>{content}</p>
   </div>
 
-  <Button img={true}>
+  <Button img={true} on:click={deleteSelf}>
     <img src="/delete.svg" alt="delete button" width="20" />
   </Button>
 </div>
@@ -28,6 +34,7 @@
     border-radius: 10px;
     position: relative;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 5px 0;
   }
   .todo-item {
     display: flex;

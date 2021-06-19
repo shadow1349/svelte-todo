@@ -1,20 +1,29 @@
 <script>
+  import TodoItem from "../components/todo-item.svelte";
   import Button from "../components/button.svelte";
-
   import { items } from "../state";
 
-  let todo_items;
+  items.set([]);
 
-  const unsubscribe = items.subscribe((values) => {
-    todo_items = values;
-  });
+  function addTodo() {
+    const length = $items.length;
+    console.log(length);
+    $items = [
+      ...$items,
+      { id: $items.length, content: `new content here ${$items.length}` },
+    ];
+  }
 </script>
 
 <h1>My Todo List</h1>
 
 <div class="button-container">
-  <Button>new todo item</Button>
+  <Button on:click={addTodo}>new todo item</Button>
 </div>
+
+{#each $items as todo (todo.id)}
+  <TodoItem content={todo.content} id={todo.id} />
+{/each}
 
 <style>
   h1 {
