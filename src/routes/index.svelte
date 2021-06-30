@@ -5,21 +5,30 @@
 
   items.set([]);
 
-  function addTodo() {
-    const length = $items.length;
-    console.log(length);
-    $items = [
-      ...$items,
-      { id: $items.length, content: `new content here ${$items.length}` },
-    ];
+  let isNew = false;
+
+  function newTodo() {
+    isNew = true;
+  }
+
+  function onKeydown(event) {
+    if (event.code.toLowerCase() === "enter") {
+      const value = event.srcElement.value;
+      $items = [{ id: $items.length, content: value }, ...$items];
+      isNew = false;
+    }
   }
 </script>
 
 <h1>My Todo List</h1>
 
 <div class="button-container">
-  <Button on:click={addTodo}>new todo item</Button>
+  <Button on:click={newTodo}>new todo item</Button>
 </div>
+
+{#if isNew}
+  <TodoItem content="" id="0" isNew={true} on:keydown={onKeydown} />
+{/if}
 
 {#each $items as todo (todo.id)}
   <TodoItem content={todo.content} id={todo.id} />

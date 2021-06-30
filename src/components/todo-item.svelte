@@ -5,6 +5,7 @@
 
   export let content;
   export let id;
+  export let isNew = false;
 
   let checked = false;
 
@@ -15,8 +16,16 @@
 
 <div class="container">
   <div class="todo-item">
-    <Checkbox bind:checked />
-    <p class={checked ? "completed" : ""}>{content}</p>
+    {#if isNew}
+      <input
+        type="text"
+        placeholder="type your todo here!"
+        on:keydown
+      />
+    {:else}
+      <Checkbox bind:checked />
+      <p class={checked ? "completed" : ""}>{content}</p>
+    {/if}
   </div>
 
   <Button img={true} on:click={deleteSelf}>

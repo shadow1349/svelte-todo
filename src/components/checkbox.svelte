@@ -1,15 +1,11 @@
 <script>
   export let checked;
-
-  function onChecked() {
-    console.log("CHECKED: ", checked);
-  }
 </script>
 
 <label class="container">
   <slot />
   <!-- If we want the checkbox to have a lavel -->
-  <input type="checkbox" bind:checked on:change={onChecked} />
+  <input type="checkbox" bind:checked on:change />
   <span class="checkmark" />
 </label>
 
